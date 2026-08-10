@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
 async function renderizarPedidos() {
   var lista = document.querySelector("#lista-pedidos");
   var spanTotal = document.querySelector("#valor-total");
+  var spanResumoItens = document.querySelector("#contador-itens");
+  var spanResumoTotal = document.querySelector("#valor-total-resumo");
   if (!lista) return;
 
   try {
@@ -35,6 +37,7 @@ async function renderizarPedidos() {
 
     lista.innerHTML = "";
     var totalGeral = 0;
+    var totalItens = 0;
 
     pedidos.forEach(function (pedido) {
       // createElement — Aula 7: cria o item do pedido
@@ -63,15 +66,28 @@ async function renderizarPedidos() {
         "</div>";
 
       lista.appendChild(li);
-      totalGeral += parseFloat(pedido.total);
+      totalGeral += parseFloat(pedido.total || 0);
+      if (pedido.itens) {
+        totalItens += pedido.itens.reduce(function (acc, item) {
+          return acc + Number(item.quantidade || 0);
+        }, 0);
+      }
     });
 
     if (spanTotal) {
       spanTotal.textContent = "R$ " + totalGeral.toFixed(2).replace(".", ",");
     }
+    if (spanResumoItens) {
+      spanResumoItens.textContent = totalItens + " itens";
+    }
+    if (spanResumoTotal) {
+      spanResumoTotal.textContent = "R$ " + totalGeral.toFixed(2).replace(".", ",");
+    }
   } catch (erro) {
     lista.innerHTML =
       "<li class='pedido-vazio erro'>Erro ao carregar pedidos.</li>";
+    if (spanResumoItens) spanResumoItens.textContent = "0 itens";
+    if (spanResumoTotal) spanResumoTotal.textContent = "R$ 0,00";
   }
 }
 

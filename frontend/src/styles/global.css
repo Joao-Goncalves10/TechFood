@@ -11,22 +11,30 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+}
+
+/* Fonte base e fundo de fallback; `style.css` contém o background principal */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5efe8;
+  color: #333;
 }
 
 /* ── VARIÁVEIS DE COR ───────────────────────────────────── */
 :root {
-  --cor-primaria: #2c3e50;
-  --cor-destaque: #e67e22;
-  --cor-amarelo: #f1c40f;
-  --cor-verde: #27ae60;
-  --cor-vermelho: #e74c3c;
+  --brand-dark: #4f0101; /* tom predominante do projeto */
+  --brand-mid: #86401b;
+  --brand-light: #fffbf5;
+  --accent: #e67e22;
+  --accent-2: #f1c40f;
+  --success: #27ae60;
+  --danger: #e74c3c;
+  --surface-border: #e8d4c8;
+  --muted: #666666;
 }
 
 /* ── HEADER ─────────────────────────────────────────────── */
 #topo-loja {
-  background-color: var(--cor-primaria);
-  color: #fff;
   padding: 20px;
   text-align: center;
   position: relative;
@@ -39,7 +47,7 @@
 
 #boas-vindas {
   font-size: 0.9rem;
-  opacity: 0.75;
+  opacity: 0.85;
   margin-bottom: 10px;
 }
 
@@ -67,16 +75,15 @@
 }
 
 #menu a {
-  color: #fff;
+  color: inherit;
   text-decoration: none;
   font-weight: bold;
-  opacity: 0.8;
+  opacity: 0.9;
   transition: opacity 0.15s;
 }
 
 #menu a:hover,
 #menu a.ativo {
-  color: var(--cor-amarelo);
   opacity: 1;
 }
 
@@ -88,7 +95,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--cor-destaque);
+  background: var(--accent);
   color: #fff;
   font-size: 0.65rem;
   font-weight: bold;
@@ -100,7 +107,9 @@
 }
 
 a.menu-ativo {
-  color: var(--cor-amarelo) !important;
+  background: rgba(255,255,255,0.08);
+  padding: 6px 12px;
+  border-radius: 14px;
   opacity: 1 !important;
 }
 
@@ -108,14 +117,12 @@ a.menu-ativo {
 .titulo-secao {
   text-align: center;
   margin: 40px 0 20px;
-  color: var(--cor-primaria);
+  color: var(--brand-dark);
   font-size: 1.3rem;
 }
 
 /* ── FOOTER ─────────────────────────────────────────────── */
 #rodape {
-  background: var(--cor-primaria);
-  color: #fff;
   padding: 30px;
   text-align: center;
   margin-top: 40px;
@@ -138,7 +145,7 @@ a.menu-ativo {
   #label-menu {
     display: block;
     font-size: 2rem;
-    color: var(--cor-amarelo);
+    color: var(--accent-2);
     cursor: pointer;
     position: absolute;
     top: 20px;
@@ -159,3 +166,31 @@ a.menu-ativo {
     margin: 8px 0;
   }
 }
+
+/* ── MODAL DE BOAS-VINDAS ───────────────────────────────── */
+#modal-boas-vindas{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  z-index: 60;
+}
+
+.modal-bv-conteudo{
+  background: var(--brand-light);
+  padding: 22px;
+  border-radius: 12px;
+  max-width: 360px;
+  width: 92%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+.modal-bv-conteudo h2{ margin-bottom: 8px; color: var(--brand-dark); }
+.modal-bv-conteudo input{ width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--surface-border); margin: 10px 0; }
+.modal-bv-conteudo button{ background: var(--brand-mid); color: var(--brand-light); border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; }
+
+/* foco acessível para links e botões */
+a:focus, button:focus, input:focus { outline: 3px solid rgba(134,64,27,0.18); outline-offset: 2px; }

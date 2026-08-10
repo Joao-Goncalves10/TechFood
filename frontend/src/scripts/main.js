@@ -45,7 +45,12 @@ async function renderizarCardapio() {
   try {
     var produtos = await buscarProdutos(); // api.js — GET /produtos
 
+    // backend pode retornar array direto ou { dados: [...] }
+    if (produtos && produtos.dados) produtos = produtos.dados;
+
     grid.innerHTML = "";
+
+    if (!Array.isArray(produtos)) throw new Error("Formato inesperado: produtos não é um array");
 
     produtos.forEach(function (produto) {
       var card = document.createElement("article");
@@ -81,7 +86,8 @@ async function renderizarCardapio() {
     });
   } catch (erro) {
     // try/catch captura erros de rede ou servidor offline
-    grid.innerHTML = "<p class='loading erro'>Erro ao carregar o cardápio.</p>";
+    console.error("Erro ao carregar cardápio:", erro);
+    grid.innerHTML = "<p class='loading erro'>Erro ao carregar o cardápio. Veja o console para detalhes.</p>";
   }
 }
 
@@ -174,7 +180,11 @@ function atualizarPrecoCard(box) {
   var total = precoUnitario * quantidade;
 
   spanPreco.textContent = "R$ " + total.toFixed(2).replace(".", ",");
-  spanPreco.style.color = total > 150 ? "#c0392b" : "#e67e22";
+  if (total > 150) {
+    spanPreco.classList.add("preco-alto");
+  } else {
+    spanPreco.classList.remove("preco-alto");
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

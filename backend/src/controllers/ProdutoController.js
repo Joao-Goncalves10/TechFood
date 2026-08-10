@@ -3,8 +3,15 @@ const ProdutoService = require('../services/ProdutoService');
 class ProdutoController {
     async listar(req, res) {
         try {
-            const resultado = await ProdutoService.listarProdutos();
-            res.json(resultado);
+            const produtos = await ProdutoService.listarProdutos();
+            const produtosArray = Array.isArray(produtos) ? produtos : produtos?.dados || [];
+            const produtosComUrl = produtosArray.map(produto => {
+                return {
+                    ...produto,
+                    foto: produto.foto ? `http://localhost:3000/uploads/${produto.foto}` : null
+                }
+            })
+            res.json(produtosComUrl);
         } catch (erro) {
             res.status(erro.status || 500).json({
                 sucesso: false,
@@ -29,7 +36,11 @@ class ProdutoController {
 
     async cadastrar(req, res) {
         try {
-            const resultado = await ProdutoService.cadastrarProduto(req.body);
+            const dadosProduto = {
+                ...req.body,
+                foto: req.file ? req.file.filename : null
+            };
+            const resultado = await ProdutoService.cadastrarProduto(dadosProduto);
             res.status(201).json(resultado);
         } catch (erro) {
             res.status(erro.status || 500).json({

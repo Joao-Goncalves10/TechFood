@@ -1,0 +1,23 @@
+[
+  {
+    "produto_id": 1,
+    "nome": "Lasanha Tradicional",
+    "descricao": "Molho especial, queijo e carne moída.",
+    "imagem": "lasanha.jpg",
+    "preco": 28.5
+  },
+  {
+    "produto_id": 2,
+    "nome": "Hambúrguer Gourmet",
+    "descricao": "Pão brioche, carne suculenta e queijo cheddar.",
+    "imagem": "hamburguer.jpg",
+    "preco": 22.0
+  },
+  {
+    "produto_id": 3,
+    "nome": "Salada Caesar",
+    "descricao": "Alface, frango grelhado e molho Caesar.",
+    "imagem": "salada.jpg",
+    "preco": 18.75
+  }
+]

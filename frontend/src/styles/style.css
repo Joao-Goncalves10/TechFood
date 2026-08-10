@@ -1,467 +1,577 @@
-/* --- ESTILO BASE (mantido das aulas anteriores) --- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
+/* ═══════════════════════════════════════════════════════════════════════
+   TECHFOOD - Estilo Moderno e Responsivo
+   ═══════════════════════════════════════════════════════════════════════ */
+
+body{
+    background: linear-gradient(135deg, #fef9f3 0%, #f5ede2 100%);
+    min-height: 100vh;
+    color: #333;
 }
 
-#topo-loja {
-  background-color: #2c3e50;
-  color: white;
-  padding: 20px;
-  text-align: center;
+
+/* ═══════════════════════════════════════════════════════════════════════
+   2 - HEADER / TOPO DO SITE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+#topo-loja{
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-mid) 100%);
+    color: var(--brand-light);
+    padding: 24px 18px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    animation: slideDown 0.6s ease-out;
 }
 
-#bt_menu,
-#label-menu {
-  display: none;
+#topo-loja h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
-#menu ul {
-  list-style: none;
-  margin-top: 10px;
+#boas-vindas {
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.95;
+    letter-spacing: 0.5px;
 }
 
-#menu li {
-  display: inline-block;
-  margin: 0 10px;
+#bt_menu, #label-menu {
+    display: none;
 }
 
-#menu a {
-  color: #f1c40f;
-  text-decoration: none;
-  font-weight: bold;
+#menu ul{
+    list-style: none;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 
-.titulo-secao {
-  text-align: center;
-  margin: 40px 0 20px;
-  color: #2c3e50;
+#menu li{
+    display: inline-block;
+    margin: 5px;
 }
 
-.vitrine-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
+#menu a{
+    color: #feecd7;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
 }
 
-.card {
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  background: #fff;
-  transition: transform 0.3s ease;
+#menu a:hover{
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    border-color: #feecd7;
+    box-shadow: 0 5px 15px rgba(255, 198, 198, 0.3);
 }
 
-.card img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+
+.titulo-secao{
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 32px;
+    color: var(--brand-dark);
+    font-size: 1.8rem;
+    font-weight: 700;
+    position: relative;
+    letter-spacing: 0.5px;
 }
 
-.preco {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #e67e22;
-  margin: 15px 0;
+.titulo-secao::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #990404, #86401b);
+    margin: 15px auto 0;
+    border-radius: 2px;
+    animation: expandWidth 0.6s ease-out;
 }
 
-.btn-pedido {
-  background-color: #e67e22;
-  color: white;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  cursor: pointer;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1rem;
+@keyframes expandWidth {
+    from { width: 0; }
+    to { width: 80px; }
 }
 
-/* Quantidade moderna — substituiu o <input type="number"> */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   3 - GRID DE VITRINES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.vitrine-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 18px 40px;
+}
+
+@media (max-width: 1100px) {
+    .vitrine-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+}
+
+@media (max-width: 700px) {
+    .vitrine-grid { grid-template-columns: 1fr; gap: 18px; }
+    .titulo-secao { font-size: 1.4rem; margin-top: 28px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   4 - CARDS DE PRODUTOS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.card{
+    border: 2px solid #e8d4c8;
+    border-radius: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #fffbf5 0%, #faf5f0 100%);
+    box-shadow: 0 8px 20px rgba(169, 110, 78, 0.15);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+    position: relative;
+}
+
+/* .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #990404, #86401b);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease-out;
+} */
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card:hover{
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(169, 110, 78, 0.25);
+    border-color: #d4a574;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    color: #4f0101;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 15px;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.card img{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+@media (max-width: 700px) {
+    .card img { height: 140px; }
+}
+
+/* .card:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+} */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTROLE DE QUANTIDADE
+   ═══════════════════════════════════════════════════════════════════════ */
+
 .quantidade-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin: 12px auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 15px 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 8px 12px;
+    border-radius: 10px;
+    width: fit-content;
 }
 
 .btn-qtd {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid #e67e22;
-  background: none;
-  color: #e67e22;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-color: #86401b;
+    color: #feecd7;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-qtd:hover {
-  background: #e67e22;
-  color: #fff;
+    background-color: #ad6640;
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(162, 100, 64, 0.3);
 }
 
 .qtd-valor {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #2c3e50;
-  min-width: 24px;
-  text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #4f0101;
+    min-width: 30px;
+    text-align: center;
 }
 
-#rodape {
-  background: #2c3e50;
-  color: white;
-  padding: 30px;
-  text-align: center;
-  margin-top: 40px;
+/* ═══════════════════════════════════════════════════════════════════════
+   PREÇO E BOTÃO
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.preco{
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #86401b;
+    margin: 15px 0;
+    text-align: left;
 }
 
-/* ═══════════════════════════════════════════════════════
-   AULA 7 — Estilos novos
-   ═══════════════════════════════════════════════════════ */
-
-/* Badge inserido pelo insertAdjacentHTML dentro do card */
-.badge-adicionado {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 3px 10px;
-  background-color: #27ae60;
-  color: #fff;
-  font-size: 0.75rem;
-  border-radius: 20px;
-  font-weight: 500;
+.preco-alto {
+    color: var(--danger);
 }
 
-/* Seção de resumo — começa oculta, JS exibe quando necessário */
+.btn-pedido{
+    background: var(--brand-mid);
+    color: var(--brand-light);
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    padding: 12px 24px;
+    border-radius: 12px;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px #86401b4d;
+}
+
+.btn-pedido:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(134, 64, 27, 0.4);
+}
+
+.btn-pedido:active{
+    transform: translateY(-1px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   5 - FOOTER
+   ═══════════════════════════════════════════════════════════════════════ */
+
+#rodape{
+    background: linear-gradient(135deg, #4f0101 0%, #3a0000 100%);
+    color: #feecd7;
+    text-align: center;
+    margin-top: 60px;
+    padding: 40px 20px;
+    box-shadow: 0 -10px 30px #0000001a;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   6 - ANIMAÇÕES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   7 - SEÇÃO RESUMO DO PEDIDO
+   ═══════════════════════════════════════════════════════════════════════ */
+
 #secao-resumo {
-  display: none;
-  max-width: 700px;
-  margin: 20px auto 40px;
-  padding: 25px;
-  background: #fff;
-  border: 2px solid #e67e22;
-  border-radius: 12px;
+    background: linear-gradient(135deg, #fffbf5 0%, #faf5f0 100%);
+    border: 2px solid #e8d4c8;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 800px;
+    box-shadow: 0 8px 20px rgba(169, 110, 78, 0.15);
+    display: none; /* Inicialmente oculto */
+    animation: fadeIn 0.5s ease-out;
 }
 
-/* Lista de itens criados com createElement */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 #lista-resumo {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 15px 0;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
 }
 
-/* Cada <li> criado pela função adicionarItemAoResumo() */
 .item-resumo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 5px;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 0.95rem;
-  color: #333;
-  /* Animação suave de entrada — o item "desce" ao aparecer */
-  animation: entrar 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #fef9f3 0%, #f5ede2 100%);
+    border: 1px solid #d4a574;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(169, 110, 78, 0.1);
+    transition: all 0.3s ease;
 }
 
-.item-resumo:last-child {
-  border-bottom: none;
+.item-resumo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(169, 110, 78, 0.2);
+    border-color: #86401b;
 }
 
-@keyframes entrar {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.item-resumo span {
+    font-size: 1.1rem;
+    color: #4f0101;
+    font-weight: 600;
+    flex-grow: 1;
 }
 
-/* Botão ✕ para remover item individual (criado com createElement) */
 .btn-remover {
-  background: none;
-  border: 1px solid #e74c3c;
-  color: #e74c3c;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-size: 0.75rem;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: all 0.15s;
+    background: #990404;
+    color: #feecd7;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
 }
 
 .btn-remover:hover {
-  background: #e74c3c;
-  color: #fff;
+    background: #7a0303;
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(153, 4, 4, 0.3);
 }
 
-/* Botão "Limpar tudo" */
 #btn-limpar {
-  background: none;
-  border: 1px solid #2c3e50;
-  color: #2c3e50;
-  padding: 8px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.15s;
+    background: #990404;
+    color: #feecd7;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    padding: 12px 24px;
+    border-radius: 12px;
+    margin-top: 20px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(153, 4, 4, 0.4);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #btn-limpar:hover {
-  background: #2c3e50;
-  color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(153, 4, 4, 0.5);
 }
 
-/* --- RESPONSIVIDADE (mantida das aulas anteriores) --- */
+/* ═══════════════════════════════════════════════════════════════════════
+   8 - MEDIA QUERIES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media screen {
+    #topo-loja h1 {
+        letter-spacing: 1px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    h1{
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .vitrine-grid{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    #topo-loja h1 {
+        font-size: 1.8rem;
+    }
+    
+    .titulo-secao {
+        font-size: 1.6rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
-  .vitrine-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+    .vitrine-grid{
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    #topo-loja {
+        padding: 20px 15px;
+    }
+    
+    #topo-loja h1 {
+        font-size: 1.6rem;
+    }
+    
+    .titulo-secao {
+        font-size: 1.4rem;
+        margin-top: 40px;
+    }
+    
+    /* Menu Hamburguer */
+    #label-menu{
+        display: block;
+        font-size: 2rem;
+        color: #feecd7;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+
+    #label-menu:hover {
+        transform: scale(1.1);
+    }
+
+    /* Clique do Botao */
+    #bt_menu:checked ~ #menu ul{
+        display: flex !important;
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 0;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    #menu li{
+        width: 100%;
+        margin: 0;
+        border-bottom: 1px solid rgba(169, 110, 78, 0.3);
+        padding-bottom: 10px;
+    }
+    
+    #menu li:last-child {
+        border-bottom: none;
+    }
+
+    #menu ul{
+        display: none;
+    }
+    
+    #menu a {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Resumo do Pedido Mobile */
+    #secao-resumo {
+        padding: 20px;
+        margin: 20px 10px;
+    }
+
+    .item-resumo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .item-resumo span {
+        font-size: 1rem;
+    }
+
+    #btn-limpar {
+        width: 100%;
+        margin-top: 15px;
+    }
 }
 
-@media screen and (max-width: 600px) {
-  #label-menu {
-    display: block;
-    font-size: 2rem;
-    color: #f1c40f;
-    cursor: pointer;
-    position: relative;
-    z-index: 10;
-  }
-
-  #menu ul {
-    display: none;
-  }
-
-  #bt_menu:checked ~ #menu ul {
-    display: block;
-    padding: 8px 0;
-  }
-
-  #menu li {
-    display: block;
-    margin: 0;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  #menu li:last-child {
-    border-bottom: none;
-  }
-
-  .vitrine-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-pedido {
-    padding: 15px;
-  }
+@media not screen {
+    #menu, .btn-pedido, #label-menu, #bt_menu{
+        display: none;
+    }
 }
 
-/* =============================================================
-   AULA 7 → AULA 8
-   ============================================================= */
+/* ═══════════════════════════════════════════════════════════════════════
+   ESTADO: FORA DE ESTOQUE
+   ═══════════════════════════════════════════════════════════════════════ */
 
-/* ── Quantidade moderna — Aula 7 ─────────────────────────────
-   Substituiu o <input type="number"> por botões + e -.
-   ─────────────────────────────────────────────────────────── */
-.quantidade-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin: 12px 0;
+.fora-estoque{
+    opacity: 0.6;
+    background-color: #e8e8e8 !important;
 }
 
-.btn-qtd {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid var(--cor-destaque, #e67e22);
-  background: none;
-  color: var(--cor-destaque, #e67e22);
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
+.fora-estoque:hover{
+    transform: none !important;
+    box-shadow: 0 8px 20px rgba(169, 110, 78, 0.1) !important;
 }
 
-.btn-qtd:hover {
-  background: var(--cor-destaque, #e67e22);
-  color: #fff;
+.fora-estoque .btn-pedido {
+    background: #999 !important;
+    cursor: not-allowed;
 }
 
-.qtd-valor {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: var(--cor-primaria, #2c3e50);
-  min-width: 24px;
-  text-align: center;
+.fora-estoque .btn-pedido:hover {
+    transform: none !important;
 }
 
-/* ── Badge no card — Aula 7 → Aula 8 ────────────────────────
-   Inserido via insertAdjacentHTML quando o pedido é salvo.
-   Some após 2s — libera o card para novo pedido do mesmo prato.
-   ─────────────────────────────────────────────────────────── */
-.badge-adicionado {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 3px 10px;
-  background: #27ae60;
-  color: #fff;
-  font-size: 0.75rem;
-  border-radius: 20px;
-  font-weight: 500;
-  animation: fadeOut 2s forwards;
+/* ── SEÇÃO CADASTRO (melhor layout para `cadastro.html`) ───────────────── */
+#secao-cadastro{
+    max-width: 900px;
+    margin: 30px auto 60px;
+    padding: 0 18px;
 }
 
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+#secao-cadastro .card{
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px;
+    border-radius: 16px;
 }
 
-/* ── Destaque no link "Meus Pedidos" do menu — Aula 8 ────────
-   Ativado por atualizarContadorPedidos() após cada pedido salvo.
-   O link já existe no HTML — só ganha a classe e o badge.
-   ─────────────────────────────────────────────────────────── */
-a.menu-ativo {
-  color: #f1c40f !important;
-  font-weight: bold;
-}
-
-.badge-menu {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #e67e22;
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: bold;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  margin-left: 5px;
-  vertical-align: middle;
-}
-
-/* =============================================================
-   AULA 9
-   ============================================================= */
-
-/* ── Modal de boas-vindas ────────────────────────────────────
-   Exibido pelo global.js na primeira vez que o cliente acessa.
-   display:none no HTML — JS altera para "flex" quando necessário.
-   ─────────────────────────────────────────────────────────── */
-#modal-boas-vindas {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-bv-conteudo {
-  background: #fff;
-  border-radius: 12px;
-  padding: 2rem;
-  width: 90%;
-  max-width: 380px;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.modal-bv-conteudo h2 {
-  color: #2c3e50;
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
-}
-
-.modal-bv-conteudo p {
-  color: #888;
-  margin-bottom: 1.25rem;
-  font-size: 0.9rem;
-}
-
-.modal-bv-conteudo input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  outline: none;
-  text-align: center;
-}
-
-.modal-bv-conteudo input:focus {
-  border-color: #e67e22;
-}
-
-.modal-bv-conteudo button {
-  width: 100%;
-  padding: 0.75rem;
-  background: #e67e22;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.modal-bv-conteudo button:hover {
-  background: #d35400;
-}
-
-/* ── Loading e erro no cardápio ──────────────────────────────
-   Exibido por renderizarCardapio() enquanto os dados carregam
-   ou quando ocorre erro na requisição.
-   ─────────────────────────────────────────────────────────── */
-.loading {
-  grid-column: 1 / -1;
-  text-align: center;
-  color: #aaa;
-  font-style: italic;
-  padding: 2rem;
-}
-
-.loading.erro {
-  color: #e74c3c;
-}
-
-/* ── Categoria do prato ──────────────────────────────────────
-   Exibida abaixo do nome — vem do campo categoria do banco.
-   ─────────────────────────────────────────────────────────── */
-.card .categoria {
-  font-size: 0.75rem;
-  color: #aaa;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
+#secao-cadastro .desc{
+    color: var(--muted);
+    font-size: 0.98rem;
+    margin-top: 8px;
 }
